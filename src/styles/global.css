@@ -70,18 +70,18 @@
 }
 
 .background-silhouette-about svg {
-    opacity: 0.05;
-    width: 40vw;
-    max-width: 100;
-    height: auto;
-    position: fixed;
-    z-index: 0;
-    right: 25%;
-    top: 40%;
-    transform: translate(50%, -50%);
-    pointer-events: none;
-    color: var(--color-foreground);
-    transition: color var(--transition-speed) ease;
+	opacity: 0.05;
+	width: 40vw;
+	max-width: 100;
+	height: auto;
+	position: fixed;
+	z-index: 0;
+	right: 25%;
+	top: 40%;
+	transform: translate(50%, -50%);
+	pointer-events: none;
+	color: var(--color-foreground);
+	transition: color var(--transition-speed) ease;
 }
 
 .nav-underline {
