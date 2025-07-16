@@ -1,12 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "."
-		}
+			"path": ".",
+		},
 	],
 	"settings": {
 		"files.associations": {
-			"wrangler.json": "jsonc"
-		}
-	}
+			"wrangler.json": "jsonc",
+		},
+		"gitdoc.enabled": true,
+	},
 }
