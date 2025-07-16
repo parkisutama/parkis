@@ -44,12 +44,12 @@ const { pageTitle } = Astro.props;
 			document.documentElement.setAttribute("data-theme", theme);
 		</script>
 		<!-- End of theme script -->
-		<script type="text/partytown" src="src/scripts/google-analytics.js"
+		<script type="text/partytown" is:inline src="./scripts/google-analytics.js"
 		></script>
 		<script
 			type="text/partytown"
 			src="https://www.googletagmanager.com/gtag/js?id=G-FCB50YLWW1"></script>
-		<script type="text/partytown" src="src/scripts/microsoft-clarity.js"
+		<script type="text/partytown" is:inline src="./scripts/microsoft-clarity.js"
 		></script>
 	</head>
 	<body
