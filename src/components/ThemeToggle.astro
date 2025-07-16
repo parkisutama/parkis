@@ -5,41 +5,65 @@ import IconSun from "./icons/IconSun.astro";
 // 1. Generate a unique ID on the server for this specific button instance.
 ---
 
-
 <button
-  id="theme-toggle"
-  class="text-logo p-2 transition-all duration-700 hover:scale-110 fixed z-20 top-[15vh] right-20 left-auto dark:left-20 dark:right-auto initial-pulse"
-  title="Toggle theme"
-  style="min-width:3rem;"
+	id="theme-toggle"
+	class="text-logo p-2 transition-all duration-700 hover:scale-110 fixed z-20 top-[15vh] right-20 left-auto dark:left-20 dark:right-auto initial-pulse"
+	title="Toggle theme"
+	style="min-width:3rem;"
 >
-  <IconMoon class="h-9 w-auto hidden dark:block transition-all duration-500" />
-  <IconSun class="h-9 w-auto block dark:hidden transition-all duration-500" />
+	<IconMoon class="h-9 w-auto hidden dark:block transition-all duration-500" />
+	<IconSun class="h-9 w-auto block dark:hidden transition-all duration-500" />
 </button>
 
 <script>
-  // This script runs on the client to handle the button click and pulse effect.
-  const toggleButton = document.getElementById("theme-toggle");
+	// This script runs on the client to handle the button click, pulse effect, and scroll hide/show.
+	const toggleButton = document.getElementById("theme-toggle");
+	let lastScrollY = window.scrollY;
+	let ticking = false;
 
-  // Add pulse effect on initial load
-  if (toggleButton) {
-	toggleButton.classList.add("animate-pulse");
-	setTimeout(() => {
-	  toggleButton.classList.remove("animate-pulse");
-	}, 10000);
+	function onScroll() {
+		if (!toggleButton) return;
+		if (window.scrollY > lastScrollY && window.scrollY > 50) {
+			// Scrolling down
+			toggleButton.classList.add("opacity-0", "pointer-events-none");
+		} else {
+			// Scrolling up
+			toggleButton.classList.remove("opacity-0", "pointer-events-none");
+		}
+		lastScrollY = window.scrollY;
+		ticking = false;
+	}
 
-	toggleButton.addEventListener("click", () => {
-	  // Check current theme by looking at the class on the <html> element
-	  const isDark = document.documentElement.classList.contains("dark");
-	  const newTheme = isDark ? "light" : "dark";
+	function requestTick() {
+		if (!ticking) {
+			requestAnimationFrame(onScroll);
+			ticking = true;
+		}
+	}
 
-	  // Update localStorage to remember the choice
-	  localStorage.setItem("theme", newTheme);
+	if (toggleButton) {
+		// Add pulse effect on initial load
+		toggleButton.classList.add("animate-pulse");
+		setTimeout(() => {
+			toggleButton.classList.remove("animate-pulse");
+		}, 10000);
 
-	  // Update the class on <html> to apply Tailwind's dark mode styles
-	  document.documentElement.classList.toggle("dark", !isDark);
+		toggleButton.addEventListener("click", () => {
+			// Check current theme by looking at the class on the <html> element
+			const isDark = document.documentElement.classList.contains("dark");
+			const newTheme = isDark ? "light" : "dark";
 
-	  // Update the data-theme attribute for our custom variants
-	  document.documentElement.setAttribute("data-theme", newTheme);
-	});
-  }
+			// Update localStorage to remember the choice
+			localStorage.setItem("theme", newTheme);
+
+			// Update the class on <html> to apply Tailwind's dark mode styles
+			document.documentElement.classList.toggle("dark", !isDark);
+
+			// Update the data-theme attribute for our custom variants
+			document.documentElement.setAttribute("data-theme", newTheme);
+		});
+
+		// Hide/show on scroll
+		window.addEventListener("scroll", requestTick);
+	}
 </script>
