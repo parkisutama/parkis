@@ -23,6 +23,7 @@
 		"wrangler": "^4.24.3"
 	},
 	"dependencies": {
+		"@astrojs/partytown": "^2.1.4",
 		"@astrojs/ts-plugin": "^1.10.4"
 	}
 }

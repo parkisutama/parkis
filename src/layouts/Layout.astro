@@ -9,6 +9,13 @@ const { pageTitle } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<title>{pageTitle}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+			rel="stylesheet"
+		/>
 		<!-- <meta name="description" content="Your description here"> -->
 
 		<!-- 👇 Critical: Inline script to prevent theme flashing -->
@@ -37,6 +44,13 @@ const { pageTitle } = Astro.props;
 			document.documentElement.setAttribute("data-theme", theme);
 		</script>
 		<!-- End of theme script -->
+		<script type="text/partytown" src="src/scripts/google-analytics.js"
+		></script>
+		<script
+			type="text/partytown"
+			src="https://www.googletagmanager.com/gtag/js?id=G-FCB50YLWW1"></script>
+		<script type="text/partytown" src="src/scripts/microsoft-clarity.js"
+		></script>
 	</head>
 	<body
 		class="text-text grid min-h-screen place-content-center p-4 text-center transition-colors duration-300 ease-in-out"
