@@ -5,7 +5,12 @@ import IconSun from "./icons/IconSun.astro";
 
 <button
 	id="theme-toggle"
-	class="text-logo p-2 transition-all duration-700 hover:scale-110 fixed z-20 top-4 right-20 left-auto dark:left-20 dark:right-auto initial-pulse md:top-4 md:right-20 md:left-auto bottom-4 md:bottom-auto"
+	class="text-logo p-2 transition-all duration-700 hover:scale-110 fixed z-20
+		top-4 right-4 left-auto
+		md:top-4 md:right-20 md:left-auto
+		bottom-auto
+		sm:bottom-4 sm:top-auto sm:right-4 sm:left-auto
+		initial-pulse"
 	title="Toggle theme"
 	style="min-width:3rem;"
 >
@@ -14,13 +19,10 @@ import IconSun from "./icons/IconSun.astro";
 </button>
 
 <script>
-	// This script runs on the client to handle the button click, pulse effect, and improved scroll hide/show.
 	const toggleButton = document.getElementById("theme-toggle");
 	let lastScrollY = window.scrollY;
 	let ticking = false;
-	let lastDirection = null;
-	let showThreshold = 80; // px from top to always show
-	let mobile = window.matchMedia("(max-width: 768px)").matches;
+	let showThreshold = 80;
 
 	function onScroll() {
 		if (!toggleButton) return;
@@ -28,14 +30,11 @@ import IconSun from "./icons/IconSun.astro";
 		const goingDown = currentY > lastScrollY;
 		const goingUp = currentY < lastScrollY;
 
-		// Always show if near top
 		if (currentY < showThreshold) {
 			toggleButton.classList.remove("opacity-0", "pointer-events-none");
 		} else if (goingDown) {
-			// Hide when scrolling down
 			toggleButton.classList.add("opacity-0", "pointer-events-none");
 		} else if (goingUp) {
-			// Show when scrolling up, but only if not at very bottom
 			toggleButton.classList.remove("opacity-0", "pointer-events-none");
 		}
 		lastScrollY = currentY;
@@ -50,34 +49,19 @@ import IconSun from "./icons/IconSun.astro";
 	}
 
 	if (toggleButton) {
-		// Add pulse effect on initial load
 		toggleButton.classList.add("animate-pulse");
 		setTimeout(() => {
 			toggleButton.classList.remove("animate-pulse");
 		}, 10000);
 
 		toggleButton.addEventListener("click", () => {
-			// Check current theme by looking at the class on the <html> element
 			const isDark = document.documentElement.classList.contains("dark");
 			const newTheme = isDark ? "light" : "dark";
-
-			// Update localStorage to remember the choice
 			localStorage.setItem("theme", newTheme);
-
-			// Update the class on <html> to apply Tailwind's dark mode styles
 			document.documentElement.classList.toggle("dark", !isDark);
-
-			// Update the data-theme attribute for our custom variants
 			document.documentElement.setAttribute("data-theme", newTheme);
 		});
 
-		// Hide/show on scroll
 		window.addEventListener("scroll", requestTick);
-
-		// On mobile, move to bottom right
-		if (mobile) {
-			toggleButton.classList.remove("top-4", "right-20", "left-auto");
-			toggleButton.classList.add("bottom-4", "right-4");
-		}
 	}
 </script>
