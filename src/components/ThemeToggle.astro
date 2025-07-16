@@ -1,0 +1,45 @@
+---
+import IconMoon from "./icons/IconMoon.astro";
+import IconSun from "./icons/IconSun.astro";
+
+// 1. Generate a unique ID on the server for this specific button instance.
+---
+
+
+<button
+  id="theme-toggle"
+  class="text-logo p-2 transition-all duration-700 hover:scale-110 fixed z-20 top-[15vh] right-20 left-auto dark:left-20 dark:right-auto initial-pulse"
+  title="Toggle theme"
+  style="min-width:3rem;"
+>
+  <IconMoon class="h-9 w-auto hidden dark:block transition-all duration-500" />
+  <IconSun class="h-9 w-auto block dark:hidden transition-all duration-500" />
+</button>
+
+<script>
+  // This script runs on the client to handle the button click and pulse effect.
+  const toggleButton = document.getElementById("theme-toggle");
+
+  // Add pulse effect on initial load
+  if (toggleButton) {
+	toggleButton.classList.add("animate-pulse");
+	setTimeout(() => {
+	  toggleButton.classList.remove("animate-pulse");
+	}, 10000);
+
+	toggleButton.addEventListener("click", () => {
+	  // Check current theme by looking at the class on the <html> element
+	  const isDark = document.documentElement.classList.contains("dark");
+	  const newTheme = isDark ? "light" : "dark";
+
+	  // Update localStorage to remember the choice
+	  localStorage.setItem("theme", newTheme);
+
+	  // Update the class on <html> to apply Tailwind's dark mode styles
+	  document.documentElement.classList.toggle("dark", !isDark);
+
+	  // Update the data-theme attribute for our custom variants
+	  document.documentElement.setAttribute("data-theme", newTheme);
+	});
+  }
+</script>

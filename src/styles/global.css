@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+	font-family: "OpenSauceSans Regular"; /* This is the custom name you'll use */
+	src: url("/src/fonts/OpenSauceSans-Regular.woff2") format("woff2"); /* Path to your font file */
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	--font-primary: "Open Sans", sans-serif;
+	--font-sencondary: "OpenSauceSans Regular", sans-serif;
+	--transition-speed: 0.3s;
+	--radius: 0.625rem;
+	--background: oklch(85.452% 0.0001 271.152 / 0.868);
+	--foreground: oklch(0.145 0 0);
+	--border: oklch(0.922 0 0);
+}
+
+.dark {
+	--background: oklch(34.458% 0.00004 271.152 / 0.811);
+	--foreground: oklch(0.985 0 0);
+	--border: oklch(1 0 0 / 10%);
+}
+
+@theme inline {
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-border: var(--border);
+	--color-ring: var(--ring);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+		background: var(--color-background);
+		color: var(--color-foreground);
+	}
+}
+
+.background-silhouette svg {
+	opacity: 0.05;
+	width: 100%;
+	height: auto;
+	position: fixed; /* Fixed position relative to the viewport */
+	z-index: 0; /* Sits just behind the content but above the body background */
+
+	/* Positioning: Start at 25% from the left (start of 2nd column) */
+	left: 25%;
+	top: 40%;
+	/* Center the element on the 25% line */
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+
+	/* width: 40vw; Responsive width */
+	/* max-width: 450px; Prevents it from getting too large */
+
+	color: var(--color-foreground); /* Use the theme's logo color */
+	transition: color var(--transition-speed) ease;
+}
+
+.background-silhouette-about svg {
+    opacity: 0.05;
+    width: 40vw;
+    max-width: 100;
+    height: auto;
+    position: fixed;
+    z-index: 0;
+    right: 25%;
+    top: 40%;
+    transform: translate(50%, -50%);
+    pointer-events: none;
+    color: var(--color-foreground);
+    transition: color var(--transition-speed) ease;
+}
+
+.nav-underline {
+	position: relative;
+	padding-bottom: 0.25rem;
+}
+.nav-underline::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: var(--color-foreground, #7c3aed); /* fallback color */
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform 0.3s ease-in-out;
+}
+.nav-underline:hover::after {
+	transform: scaleX(1);
+}
+
+.parkis-utama {
+	font-family: var(--font-primary);
+	font-weight: 600;
+	text-align: center;
+	color: var(--color-foreground);
+	transition: color var(--transition-speed) ease;
+}

@@ -1,0 +1,19 @@
+---
+// src/pages/index.astro;
+import Layout from "../layouts/Layout.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Background from "../components/backgrounds/background.astro";
+import HomeNav from "../components/HomeNavigation.astro";
+---
+
+<Layout title="parkis utama">
+	<Background />
+
+	<main class="content-wrapper relative z-10 grid gap-4 justify-items-center">
+		<ThemeToggle />
+
+		<h1 class="text-[clamp(3rem,10vw,5rem)] font-semibold">parkis utama,</h1>
+
+		<HomeNav />
+	</main>
+</Layout>

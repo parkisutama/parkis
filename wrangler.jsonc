@@ -4,18 +4,16 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "parkis",
+	"name": "me",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-07-12",
-	"compatibility_flags": [
-		"global_fetch_strictly_public"
-	],
+	"compatibility_flags": ["global_fetch_strictly_public"],
 	"assets": {
-		"directory": "./public"
+		"directory": "./dist",
 	},
 	"observability": {
-		"enabled": true
-	}
+		"enabled": true,
+	},
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
