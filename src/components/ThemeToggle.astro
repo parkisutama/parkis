@@ -7,7 +7,7 @@ import IconSun from "./icons/IconSun.astro";
 
 <button
 	id="theme-toggle"
-	class="text-logo p-2 transition-all duration-700 hover:scale-110 fixed z-20 top-4 right-20 left-auto dark:left-20 dark:right-auto initial-pulse"
+	class="text-logo p-2 transition-all duration-700 hover:scale-110 fixed z-20 top-4 right-20 left-auto dark:left-20 dark:right-auto initial-pulse md:top-4 md:right-20 md:left-auto md:bottom-auto bottom-4 right-4 left-auto md:bottom-auto md:right-20"
 	title="Toggle theme"
 	style="min-width:3rem;"
 >
@@ -16,21 +16,31 @@ import IconSun from "./icons/IconSun.astro";
 </button>
 
 <script>
-	// This script runs on the client to handle the button click, pulse effect, and scroll hide/show.
+	// This script runs on the client to handle the button click, pulse effect, and improved scroll hide/show.
 	const toggleButton = document.getElementById("theme-toggle");
 	let lastScrollY = window.scrollY;
 	let ticking = false;
+	let lastDirection = null;
+	let showThreshold = 80; // px from top to always show
+	let mobile = window.matchMedia("(max-width: 768px)").matches;
 
 	function onScroll() {
 		if (!toggleButton) return;
-		if (window.scrollY > lastScrollY && window.scrollY > 50) {
-			// Scrolling down
+		const currentY = window.scrollY;
+		const goingDown = currentY > lastScrollY;
+		const goingUp = currentY < lastScrollY;
+
+		// Always show if near top
+		if (currentY < showThreshold) {
+			toggleButton.classList.remove("opacity-0", "pointer-events-none");
+		} else if (goingDown) {
+			// Hide when scrolling down
 			toggleButton.classList.add("opacity-0", "pointer-events-none");
-		} else {
-			// Scrolling up
+		} else if (goingUp) {
+			// Show when scrolling up, but only if not at very bottom
 			toggleButton.classList.remove("opacity-0", "pointer-events-none");
 		}
-		lastScrollY = window.scrollY;
+		lastScrollY = currentY;
 		ticking = false;
 	}
 
@@ -65,5 +75,11 @@ import IconSun from "./icons/IconSun.astro";
 
 		// Hide/show on scroll
 		window.addEventListener("scroll", requestTick);
+
+		// On mobile, move to bottom right
+		if (mobile) {
+			toggleButton.classList.remove("top-4", "right-20", "left-auto");
+			toggleButton.classList.add("bottom-4", "right-4");
+		}
 	}
 </script>
