@@ -3,7 +3,9 @@
 const { ...props } = Astro.props;
 ---
 
-<div class="background-silhouette">
+<div
+	class="opacity-5 w-full h-auto fixed z-0 left-[25%] top-[40%] -translate-x-1/2 -translate-y-1/2 pointer-events-none text-[color:var(--color-foreground)] transition-colors duration-[var(--transition-speed)] ease-in-out"
+>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
