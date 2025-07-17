@@ -52,9 +52,9 @@ const { pageTitle } = Astro.props;
 		<script type="text/partytown" is:inline src="/scripts/microsoft-clarity.js"
 		></script>
 	</head>
-	<body
-		class="text-text grid min-h-screen place-content-center p-4 text-center transition-colors duration-300 ease-in-out"
-	>
-		<slot />
+	<body class="flex flex-col max-w-3xl min-h-screen px-8 mx-auto">
+		<main class="flex-grow"><slot /></main>
 	</body>
+	<!-- > -->
+	<!-- class="text-text grid min-h-screen place-content-center p-4 text-center transition-colors duration-300 ease-in-out" -->
 </html>

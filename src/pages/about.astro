@@ -1,126 +1,98 @@
 ---
+// src/pages/about.astro
 import Layout from "../layouts/Layout.astro";
 import BackgroundAbout from "../components/backgrounds/BackgroundAbout.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import Footer from "../components/Footer.astro";
 import Home from "../components/icons/Home.astro";
+
 const pageTitle = "About Me";
 ---
 
 <BackgroundAbout />
 <Layout title={pageTitle} />
-
 <ThemeToggle />
+
 <main class="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
-	<div class="flex mt-12">
-		<a href="/" aria-label="Go to Home Page">
+	<div class="flex items-center mt-12">
+		<a href="/" aria-label="Go to Home Page" class="mr-4">
 			<Home />
 		</a>
 		<h1 class="text-4xl sm:text-5xl font-semibold">about</h1>
 	</div>
-	<hr class="border-gray-700 my-4" />
-	<div class="text-justify">
-		<h2 class="text-lg font-regular">improve and growth</h2>
-		<h2 class="text-lg font-regular">faster and better</h2>
-		<div class="my-2 text-regular">
-			<div>
-				<div>
-					<h3>Hey, I'm Parkis. Thanks for stopping by.</h3>
-					<p class="my-2">
-						You could say I'm a Philosophy bachelor who genuinely loves tech. I
-						started my journey as a System and Network Admin, getting my hands
-						dirty with tools like Mikrotik and Unifi. These days, I've swapped
-						that for the world of Business Intelligence and Analytics.
-					</p>
 
-					<h3 class="text-xl font-semibold my-4">How I Stumbled into Data</h3>
-					<p>
-						I used to be a web developer, managing Linux servers and doing SEO
-						for WordPress sites. While I was in the weeds of digital marketing,
-						I found the analytics side of things. It was the first time I saw
-						how the things I built were actually being measured, and honestly,
-						it was a lightbulb moment for me.
-					</p>
-					<p>
-						Seeing the dashboards in Google Analytics and on my own server
-						completely changed my perspective. It helped us make a tough call:
-						to shut down our own website. We realized the PHP and WordPress
-						setup was a huge resource hog, and most of our customers were
-						finding us on Instagram and Facebook anyway. It taught me something
-						important: whatever I build, it has to actually matter and make a
-						real impact.
-					</p>
-
-					<h3 class="text-xl font-semibold my-4">My Journey and Go-To Tools</h3>
-					<p>
-						After that, I was hooked. I jumped headfirst into Business
-						Intelligence. I realized it's not just about charts and numbers—it's
-						about understanding the story behind the data through things like
-						Data Modeling and building Data Pipelines.
-					</p>
-					<p>
-						While my main focus is on analytics, I do enjoy coding for data
-						pipelines and transformations. I'm really into serverless and
-						low-code solutions right now. Here are some of the tools I use
-						regularly:
-					</p>
-					<p class="my-2">
-						<strong>Coding:</strong> Python, Astro, Svelte<br />
-						<strong>Productivity & BI:</strong> Google Workspace, AppSheet, QField,
-						QGIS<br />
-						<strong>Platforms:</strong> Cloudflare, SQLite, Geopackage
-					</p>
-					<p>If you want to see, here is my Environment Development Setup</p>
-
-					<h3 class="text-xl font-semibold my-4">What I Do</h3>
-					<p>
-						So that's what I do now! I help people and businesses make better
-						decisions by:
-					</p>
-					<ul class="list-disc list-inside">
-						<li class="my-2">
-							Figuring out the right data to track based on what they want to
-							achieve.
-						</li>
-						<li class="my-2">
-							Pulling that data together from all the different places it lives.
-						</li>
-						<li class="my-2">
-							Setting up smart and simple ways to collect data with tools like
-							AppSheet and QField.
-						</li>
-						<li class="my-2">
-							Turning raw data into insights and ideas for improvement with
-							dashboards and reports.
-						</li>
-					</ul>
-
-					<div>
-						<h3 class="text-xl font-semibold my-4">
-							If You read this far, thanks for reading!
-						</h3>
-
-						<p class="my-2">
-							If you'd like to see more, stop by my <strong
-								>solutions page</strong
-							> to check out my work in BI and analytics.
-						</p>
-						<p class="my-2">
-							I'm constantly learning, and my "digital garden" is where I
-							process those ideas. I tend to read when I'm stuck and write when
-							I'm overthinking. If you're interested, you can check out my <strong
-								>writing section</strong
-							> to see what topics are on my mind.
-						</p>
-						<p class="my-2">
-							I'm always looking to learn and grow, so if you have any tips or
-							just want to chat about data, feel free to reach out. I'd love to
-							connect with others who share the same passion.
-						</p>
-					</div>
-				</div>
-				<Footer />
-			</div>
-		</div>
+	<hr class="border-gray-700 my-6" />
+	<div class="my-4 font-serif">
+		<h2 class="text-left text-lg font-regular">improve and growth</h2>
+		<h2 class="text-left text-lg font-regular">faster and better</h2>
 	</div>
+
+	<div class="text-justify space-y-6">
+		<section>
+			<p>
+				Hello, I'm Parkis. Thanks for visiting. My journey into data wasn't a
+				straight line. I studied Philosophy and later worked as a System &
+				Network Admin. I always liked tech, but I found the work I love today by
+				accident.
+			</p>
+		</section>
+
+		<section>
+			<div class="text-lg font-semibold mb-3 font-serif">
+				<p>focus on the work</p>
+				<p>that</p>
+				<p>gets real impact and value.</p>
+			</div>
+			<p>
+				The change happened when I was a web developer. I enjoyed making things,
+				i was building websites, but I couldn't really see if they were helping
+				anyone. It was frustrating to create things without knowing their true
+				impact. Then I discovered analytics.
+			</p>
+			<p class="mt-4">
+				I start by building dashboards for my servers using netdata and grafana.
+				Installing Google Analytics, and creating link tracker: to identify user
+				touch point, and seeing the data from our website it showed us that our
+				site was slow and costly, and that most of our customers found us on
+				social media. It changed everything and the decision was clear: shutdown
+				and move on. That experience taught me a lesson that I still use today:
+			</p>
+		</section>
+
+		<section>
+			<div class="text-lg font-semibold font-serif mb-3">
+				<p>what</p>
+				<p>i do now</p>
+			</div>
+			<p>
+				Now, I help other people find that same kind of clarity. I enjoy taking
+				messy data from different places, cleaning it up, and showing it in a
+				simple way. It's about helping people see the connection between their
+				effort and the outcome.
+			</p>
+			<p class="mt-4">
+				For this, I usually use tools like Python, SQL, QGIS, and AppSheet, and
+				I prefer simple, low-code solutions when they fit the job.
+			</p>
+		</section>
+
+		<section>
+			<h2 class="text-lg font-semibold mb-3">Let's Connect</h2>
+			<p>
+				I'm always learning and enjoy talking with others who are passionate
+				about data. If you want to chat about BI, analytics, or just have a
+				problem you're trying to solve, feel free to reach out. You can see some
+				of my work on my <a
+					href="/solutions"
+					class="font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
+					>solutions page</a
+				> or see what's on my mind in my <a
+					href="/writing"
+					class="font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
+					>writing section</a
+				>.
+			</p>
+		</section>
+	</div>
+	<Footer />
 </main>
