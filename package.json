@@ -20,7 +20,7 @@
 		"tailwindcss": "^4.1.11",
 		"typescript": "^5.5.2",
 		"vitest": "~3.2.0",
-		"wrangler": "^4.24.3"
+		"wrangler": "^4.29.0"
 	},
 	"dependencies": {
 		"@astrojs/partytown": "^2.1.4",
