@@ -12,7 +12,7 @@
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"@cloudflare/vitest-pool-workers": "^0.8.63",
 		"@tailwindcss/vite": "^4.1.11",
 		"astro": "^5.11.1",
 		"prettier": "3.6.2",
