@@ -5,19 +5,17 @@
 @font-face {
 	font-family: "OpenSauceSans Regular"; /* This is the custom name you'll use */
 	src: url("/src/fonts/OpenSauceSans-Regular.woff2") format("woff2"); /* Path to your font file */
-	font-weight: 300;
-	font-style: normal;
 	font-display: swap;
 }
 
 :root {
-	--font-primary: "Open Sans", sans-serif;
-	--font-sencondary: "OpenSauceSans Regular", sans-serif;
+	--font-primary: "Open Sans";
+	--font-secondary: "OpenSauceSans Regular", "sans-serif";
 	--transition-speed: 0.3s;
-	--radius: 0.625rem;
+	/* --radius: 0.625rem; */
 	--background: oklch(85.452% 0.0001 271.152 / 0.868);
 	--foreground: oklch(0.145 0 0);
-	--border: oklch(0.922 0 0);
+	/* --border: oklch(0.922 0 0); */
 }
 
 .dark {
@@ -26,7 +24,9 @@
 	--border: oklch(1 0 0 / 10%);
 }
 
-@theme inline {
+@theme {
+	--font-sans: Open Sans, sans-serif;
+	--font-display: OpenSauceSans-Regular, monospace;
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
@@ -36,32 +36,54 @@
 	--color-border: var(--border);
 	--color-ring: var(--ring);
 }
+/* ToggleTheme here */
+body {
+	@apply bg-background text-foreground;
+	background: var(--color-background);
+	color: var(--color-foreground);
+}
+.underline-hover {
+	position: relative;
+}
+.underline-hover::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: var(--color-foreground, currentColor);
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform 0.3s ease-in-out;
+}
+.underline-hover:hover::after {
+	transform: scaleX(1);
+}
 
 @layer base {
-	.underline-hover {
-		position: relative;
+	h1 {
+		font-size: var(--text-2xl);
+		font-family: var(--font-display);
 	}
-	.underline-hover::after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		width: 100%;
-		height: 2px;
-		background: var(--color-foreground, currentColor);
-		transform: scaleX(0);
-		transform-origin: center;
-		transition: transform 0.3s ease-in-out;
+	h2 {
+		font-size: var(--text-xl);
+		font-family: var(--font-display);
 	}
-	.underline-hover:hover::after {
-		transform: scaleX(1);
+	h3 {
+		font-size: var(--text-lg);
 	}
-	* {
-		@apply border-border outline-ring/50;
+	h4 {
+		font-size: var(--text-base);
 	}
-	body {
-		@apply bg-background text-foreground;
-		background: var(--color-background);
-		color: var(--color-foreground);
+	h5 {
+		font-size: var(--text-sm);
+	}
+	h6 {
+		font-size: var(--text-xs);
+	}
+	blockquote {
+		@apply my-2 border-l-4 pl-4 italic text-zinc-600 dark:text-zinc-100;
+		border-color: var(--color-border);
 	}
 }
